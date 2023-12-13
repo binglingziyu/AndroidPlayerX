@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'online.testdata.player.accessibility'
+    compileSdk rootProject.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+kapt {
+    correctErrorTypes true
+}
+
+dependencies {
+
+    // Google & Jetpack
+    implementation "androidx.core:core-ktx:${rootProject.androidx.coreKtx}"
+    implementation "androidx.startup:startup-runtime:${rootProject.androidx.startupRuntime}"
+    implementation "androidx.appcompat:appcompat:${rootProject.androidx.appcompat}"
+    implementation "com.google.android.material:material:${rootProject.google.material}"
+
+    // DI
+    implementation "com.google.dagger:hilt-android:${rootProject.google.hilt}"
+    kapt "com.google.dagger:hilt-compiler:${rootProject.google.hilt}"
+
+    // Test
+    testImplementation "junit:junit:${rootProject.test.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${rootProject.test.androidxJunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.test.androidxEspresso}"
+}
