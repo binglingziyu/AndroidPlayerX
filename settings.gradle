@@ -17,6 +17,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "PlayerOne"
 include ':app'
+include ':module:Common'
+include ':module:FloatingWindow'
 include ':module:Accessibility'
 include ':module:ScreenShare'
-include ':module:FloatingWindow'

@@ -1,22 +1,19 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
 }
 
 android {
-    namespace 'online.testdata.player.x'
+    namespace 'online.testdata.player.common'
     compileSdk rootProject.compileSdk
 
     defaultConfig {
-        applicationId "online.testdata.player.x"
-        minSdk rootProject.minSdk
         targetSdk rootProject.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -39,11 +36,6 @@ kapt {
 }
 
 dependencies {
-
-    implementation project(":module:Common")
-    implementation project(":module:Accessibility")
-    implementation project(":module:FloatingWindow")
-    implementation project(":module:ScreenShare")
 
     // Google & Jetpack
     implementation "androidx.core:core-ktx:${rootProject.androidx.coreKtx}"
