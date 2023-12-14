@@ -10,7 +10,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="online.testdata.player.screenshare.initializer.PlayerScreenShareInitializer"
+                android:name="online.testdata.player.screenshare.initializer.PlayerXScreenShareInitializer"
                 android:value="androidx.startup" />
         </provider>
 

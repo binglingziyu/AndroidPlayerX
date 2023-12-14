@@ -37,6 +37,8 @@ kapt {
 
 dependencies {
 
+    implementation project(":module:Common")
+
     // Google & Jetpack
     implementation "androidx.core:core-ktx:${rootProject.androidx.coreKtx}"
     implementation "androidx.startup:startup-runtime:${rootProject.androidx.startupRuntime}"
@@ -46,6 +48,8 @@ dependencies {
     // DI
     implementation "com.google.dagger:hilt-android:${rootProject.google.hilt}"
     kapt "com.google.dagger:hilt-compiler:${rootProject.google.hilt}"
+
+    implementation 'com.github.LxzBUG:ScreenShare:1.1.7'
 
     // Test
     testImplementation "junit:junit:${rootProject.test.junit}"
