@@ -10,6 +10,7 @@ android {
     compileSdk rootProject.compileSdk
 
     defaultConfig {
+        minSdk rootProject.minSdk
         targetSdk rootProject.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -46,6 +47,11 @@ dependencies {
     // DI
     implementation "com.google.dagger:hilt-android:${rootProject.google.hilt}"
     kapt "com.google.dagger:hilt-compiler:${rootProject.google.hilt}"
+
+    implementation "io.getstream:stream-log-android:${rootProject.thirdPart.streamLog}"
+    debugImplementation "io.getstream:stream-log-android-file:${rootProject.thirdPart.streamLog}"
+
+    implementation 'com.github.getActivity:XXPermissions:18.5'
 
     // Test
     testImplementation "junit:junit:${rootProject.test.junit}"

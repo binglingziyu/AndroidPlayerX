@@ -10,7 +10,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="online.testdata.player.common.initializer.PlayerCommonInitializer"
+                android:name="online.testdata.player.common.initializer.PlayerXCommonInitializer"
                 android:value="androidx.startup" />
         </provider>
 

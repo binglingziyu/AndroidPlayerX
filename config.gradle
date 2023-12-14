@@ -9,6 +9,7 @@ ext {
             activityKtx: "1.6.1",
             appcompat: "1.6.1",
             startupRuntime: "1.1.1",
+            lifecycleService: "2.6.1",
             lifecycle: "2.5.1",
             navigationFragment: "2.5.3",
             splashscreen: "1.0.0",
@@ -62,7 +63,7 @@ ext {
 
     thirdPart = [
             chucker: "3.5.2", // Okhttp 请求日志
-            streamLog: "1.1.3",
+            streamLog: "1.1.4",
             coil: "2.2.2",
             kcomponent: "v1.0.7",
             channel: "1.1.5",
