@@ -1,4 +1,4 @@
-package com.smart.myapp.logger
+package online.testdata.player.common.logger
 
 import io.getstream.log.Priority
 import io.getstream.log.StreamLog

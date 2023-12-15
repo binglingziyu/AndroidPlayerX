@@ -3,8 +3,7 @@ package online.testdata.player.common.initializer
 import android.app.Application
 import android.content.Context
 import androidx.startup.Initializer
-import com.smart.myapp.logger.smartLog
-import com.smart.myapp.logger.smartLogDebug
+import online.testdata.player.common.logger.smartLog
 import io.getstream.log.Priority
 import io.getstream.log.StreamLog
 import io.getstream.log.android.AndroidStreamLogger

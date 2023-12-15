@@ -1,4 +1,10 @@
-package com.smart.myapp.logger
+package online.testdata.player.common.logger
+
+import online.testdata.player.common.logger.smartLogDebug
+import online.testdata.player.common.logger.smartLogError
+import online.testdata.player.common.logger.smartLogInfo
+import online.testdata.player.common.logger.smartLogVerbose
+import online.testdata.player.common.logger.smartLogWarn
 
 class SmartLog constructor(val tag: String? = null) {
 
