@@ -10,7 +10,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="online.testdata.player.floatingwindow.initializer.PlayerFloatingWindowInitializer"
+                android:name="online.testdata.player.floatingwindow.initializer.PlayerXFloatingWindowInitializer"
                 android:value="androidx.startup" />
         </provider>
 
