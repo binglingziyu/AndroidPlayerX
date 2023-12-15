@@ -37,8 +37,11 @@ kapt {
 
 dependencies {
 
+    implementation project(":module:Common")
+
     // Google & Jetpack
     implementation "androidx.core:core-ktx:${rootProject.androidx.coreKtx}"
+    implementation "androidx.lifecycle:lifecycle-service:${rootProject.androidx.lifecycleService}"
     implementation "androidx.startup:startup-runtime:${rootProject.androidx.startupRuntime}"
     implementation "androidx.appcompat:appcompat:${rootProject.androidx.appcompat}"
     implementation "com.google.android.material:material:${rootProject.google.material}"

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--Android 9（API 级别 28）或更高版本并使用前台服务，则其必须请求 FOREGROUND_SERVICE 权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application>
 
         <provider
@@ -10,9 +13,25 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="online.testdata.player.accessibility.initializer.PlayerAccessibilityInitializer"
+                android:name="online.testdata.player.accessibility.initializer.PlayerXAccessibilityInitializer"
                 android:value="androidx.startup" />
         </provider>
+
+        <service
+            android:name=".service.PlayerXAccessibilityService"
+            android:description="@string/description_in_manifest"
+            android:exported="true"
+            android:label="@string/label_in_manifest"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_config" />
+        </service>
+
+        <service android:name=".service.PlayerXForegroundService"/>
 
     </application>
 
