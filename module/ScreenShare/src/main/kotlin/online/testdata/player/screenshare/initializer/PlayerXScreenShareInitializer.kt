@@ -2,7 +2,7 @@ package online.testdata.player.screenshare.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.smart.myapp.logger.smartLog
+import online.testdata.player.common.logger.smartLog
 
 class PlayerXScreenShareInitializer : Initializer<Unit> {
 

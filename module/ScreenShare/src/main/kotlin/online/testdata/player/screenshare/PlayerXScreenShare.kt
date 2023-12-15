@@ -1,7 +1,7 @@
 package online.testdata.player.screenshare
 
 import androidx.appcompat.app.AppCompatActivity
-import com.smart.myapp.logger.smartLogDebug
+import online.testdata.player.common.logger.smartLogDebug
 import org.loka.screensharekit.EncodeBuilder
 import org.loka.screensharekit.ScreenShareKit
 import org.loka.screensharekit.callback.RGBACallBack
@@ -26,10 +26,10 @@ object PlayerXScreenShare {
                 smartLogDebug("PlayerXScreenShare") { "屏幕截图数据: $width,$height,$stride" }
             }
 
-        }).onStart({
-            // 用户同意采集，开始采集数据
-            smartLogDebug("PlayerXScreenShare") { " 用户同意采集，开始采集数据" }
-        }).start()
+        }).onStart {
+                // 用户同意采集，开始采集数据
+                smartLogDebug("PlayerXScreenShare") { " 用户同意采集，开始采集数据" }
+            }.start()
     }
 
 }
