@@ -16,6 +16,7 @@ import online.testdata.player.accessibility.util.AccessibilitySettingUtils.toAcc
 import online.testdata.player.common.logger.smartLogDebug
 import online.testdata.player.common.util.AppUtil.isServiceRunning
 import online.testdata.player.screenshare.PlayerXScreenShare.startScreenShare
+import online.testdata.player.tf.BitmapUtil
 import online.testdata.player.tf.DetectTool
 import online.testdata.player.tf.NonMaxSuppression
 import online.testdata.player.x.databinding.ActivityMainBinding
@@ -73,17 +74,17 @@ class MainActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeStream(inputStream)
             smartLogDebug { "decode: ${System.currentTimeMillis() - startMS}MS" }
             startMS = System.currentTimeMillis()
-            val resizeBitmap = resizeBitmap(bitmap, 640)
+            val resizeBitmap = BitmapUtil.resizeBitmap(bitmap, 640)
             smartLogDebug { "resize: ${System.currentTimeMillis() - startMS}MS" }
             startMS = System.currentTimeMillis()
             binding.dnfImage.setImageBitmap(resizeBitmap)
             // 转换为输入层(1, 640, 640, 3)结构的float数组
-            //val inputArr: Array<Array<Array<FloatArray>>> = bitmapToFloatArray(resizeBitmap)
             smartLogDebug { "bitmap: ${bitmap.width},${bitmap.height}" }
-            val inputByteBuffer = convertBitmapToByteBuffer(resizeBitmap)
+            val inputByteBuffer = BitmapUtil.convertBitmapToByteBuffer(resizeBitmap)
             smartLogDebug { "bitmapToFloatArray: ${System.currentTimeMillis() - startMS}MS" }
             startMS = System.currentTimeMillis()
             // 构建一个空的输出结构
+            //
             val outArray = Array(1) {
                 Array(7) {
                     FloatArray(8400)
@@ -95,9 +96,9 @@ class MainActivity : AppCompatActivity() {
             startMS = System.currentTimeMillis()
             smartLogDebug { "outArray: $outArray" }
 
-            // 取出(1, 6, 8400)中的(6, 8400)
+            // 取出(1, 7, 8400)中的(7, 8400)
             val matrix_2d = outArray[0]
-            // (6, 8400)变为(8400, 6)
+            // (7, 8400)变为(8400, 7)
             val outputMatrix = Array(8400) {
                 FloatArray(
                     7
@@ -141,79 +142,6 @@ class MainActivity : AppCompatActivity() {
             startMS = System.currentTimeMillis()
             smartLogDebug { "boxes: ${boxes.size}, scores: ${maxScores.size}, nonMaxBoxes: ${nonMaxBoxes.size}" }
         }
-    }
-
-    fun resizeBitmap(source: Bitmap, maxSize: Int): Bitmap {
-        val outWidth: Int
-        val outHeight: Int
-        val inWidth = source.width
-        val inHeight = source.height
-        if (inWidth > inHeight) {
-            outWidth = maxSize
-            outHeight = inHeight * maxSize / inWidth
-        } else {
-            outHeight = maxSize
-            outWidth = inWidth * maxSize / inHeight
-        }
-        val resizedBitmap = Bitmap.createScaledBitmap(source, outWidth, outHeight, false)
-        val outputImage = Bitmap.createBitmap(maxSize, maxSize, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(outputImage)
-        canvas.drawColor(Color.WHITE)
-        val left = (maxSize - outWidth) / 2
-        val top = (maxSize - outHeight) / 2
-        canvas.drawBitmap(resizedBitmap, left.toFloat(), top.toFloat(), null)
-        return outputImage
-    }
-
-    private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
-        val FLOAT_TYPE_SIZE = 4
-        val PIXEL_SIZE = 3
-        val modelInputSize = FLOAT_TYPE_SIZE * bitmap.width * bitmap.height * PIXEL_SIZE
-        val byteBuffer = ByteBuffer.allocateDirect(modelInputSize)
-        byteBuffer.order(ByteOrder.nativeOrder())
-
-        val pixels = IntArray(bitmap.width * bitmap.height)
-        bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-        for (pixelValue in pixels) {
-            val r = (pixelValue shr 16 and 0xFF)
-            val g = (pixelValue shr 8 and 0xFF)
-            val b = (pixelValue and 0xFF)
-
-            // Convert RGB to grayscale and normalize pixel value to [0..1].
-//            val normalizedPixelValue = (r + g + b) / 3.0f / 255.0f
-//            byteBuffer.putFloat(normalizedPixelValue)
-            byteBuffer.putFloat(r / 255.0f)
-            byteBuffer.putFloat(g / 255.0f)
-            byteBuffer.putFloat(b / 255.0f)
-        }
-
-        return byteBuffer
-    }
-
-
-    private fun bitmapToFloatArray(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
-        val height = bitmap.height
-        val width = bitmap.width
-        // 初始化一个float数组
-        val result = Array(1) {
-            Array(height) {
-                Array(width) {
-                    FloatArray(3)
-                }
-            }
-        }
-        for (i in 0 until height) {
-            for (j in 0 until width) {
-                // 获取像素值
-                val pixel = bitmap.getPixel(j, i)
-                // 将RGB值分离并进行标准化（假设你需要将颜色值标准化到0-1之间）
-                result[0][i][j][0] = (pixel shr 16 and 0xFF) / 255.0f
-                result[0][i][j][1] = (pixel shr 8 and 0xFF) / 255.0f
-                result[0][i][j][2] = (pixel and 0xFF) / 255.0f
-            }
-        }
-        return result
     }
 
 }
