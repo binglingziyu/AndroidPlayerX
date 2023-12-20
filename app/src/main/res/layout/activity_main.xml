@@ -74,4 +74,11 @@
         android:layout_marginTop="8dp"
         android:text="TensorFlow"/>
 
+    <ImageView
+        android:id="@+id/dnf_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"/>
+
 </LinearLayout>
