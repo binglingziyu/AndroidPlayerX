@@ -141,6 +141,7 @@ class MainActivity : AppCompatActivity() {
             smartLogDebug { "nonMaxBoxes: ${System.currentTimeMillis() - startMS}MS" }
             startMS = System.currentTimeMillis()
             smartLogDebug { "boxes: ${boxes.size}, scores: ${maxScores.size}, nonMaxBoxes: ${nonMaxBoxes.size}" }
+            binding.boxView.boxes = nonMaxBoxes
         }
     }
 

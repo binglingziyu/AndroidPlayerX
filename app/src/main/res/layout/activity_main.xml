@@ -74,11 +74,28 @@
         android:layout_marginTop="8dp"
         android:text="TensorFlow"/>
 
-    <ImageView
-        android:id="@+id/dnf_image"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dnf_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"/>
+
+        <online.testdata.player.x.ui.main.DetectBoxView
+            android:id="@+id/box_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/dnf_image"
+            app:layout_constraintTop_toTopOf="@id/dnf_image"
+            app:layout_constraintRight_toRightOf="@id/dnf_image"
+            app:layout_constraintBottom_toBottomOf="@id/dnf_image"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
