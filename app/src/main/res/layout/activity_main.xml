@@ -74,6 +74,14 @@
         android:layout_marginTop="8dp"
         android:text="TensorFlow"/>
 
+    <Button
+        android:id="@+id/button_floating_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="FloatingWindow"
+        android:visibility="gone"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

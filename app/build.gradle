@@ -64,6 +64,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:${rootProject.google.hilt}"
     kapt "com.google.dagger:hilt-compiler:${rootProject.google.hilt}"
 
+    // 悬浮窗框架：https://github.com/getActivity/EasyWindow
+    implementation 'com.github.getActivity:EasyWindow:10.6'
+
     // Test
     testImplementation "junit:junit:${rootProject.test.junit}"
     androidTestImplementation "androidx.test.ext:junit:${rootProject.test.androidxJunit}"
